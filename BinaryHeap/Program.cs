@@ -28,7 +28,7 @@ namespace BinaryHeap
         // sprawdzamy, czy podana tablica to kopiec
         public static bool IsHeap(int[] tab)
         {
-            for (int i = 0; i < tab.Length; i++)
+            for (int i = 0; i < tab.Length / 2; i++)
             {
                 // badamy czy nie kopiec
                 // czy lewe dziecko jest wieksze
@@ -36,6 +36,20 @@ namespace BinaryHeap
                     return false;
                 // czy prawe dziecko wieksze
                 if (2 * i + 2 < tab.Length && tab[i] < tab[2 * i + 2])
+                    return false;
+            }
+            return true;
+        }
+
+        // UWAGA
+        // Jeżeli uwzglednimy zadanie 1c to zauważymy, że (t.Length / 2) -1 jest indeksem
+        // ostatniego węzła węwnętrznego czyli mozemy uprościć sprawdzanie
+        static bool IsHeap2(int[] t)
+        {
+            for (int i = 0; i < t.Length / 2; i++)
+            {
+                // badamy czy NIE kopiec
+                if (t[i] < t[2 * i + 1] || (2 * i + 2 < t.Length && t[i] < t[2 * i + 2]))
                     return false;
             }
             return true;
